@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SistemaAeropuerto.propietario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.avion.tipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.avion.tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_propietario }, new { @class = "btn btn-warning glyphicon glyphicon-edit" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_propietario }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_propietario }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

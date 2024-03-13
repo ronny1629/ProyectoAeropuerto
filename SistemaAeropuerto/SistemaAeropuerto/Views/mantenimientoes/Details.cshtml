@@ -1,0 +1,42 @@
+﻿@model SistemaAeropuerto.mantenimiento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mantenimiento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_mantenimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_mantenimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.avion.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avion.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mecanicos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mecanicos.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_mantenimiento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

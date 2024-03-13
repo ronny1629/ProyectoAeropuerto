@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SistemaAeropuertoModelStoreContainer" CdmEntityContainer="SistemaAeropuertoEntities">
+    <EntitySetMapping Name="avion">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.avion">
+        <MappingFragment StoreEntitySet="avion">
+          <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="siglas" ColumnName="siglas" />
+          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+          <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="azafata">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.azafata">
+        <MappingFragment StoreEntitySet="azafata">
+          <ScalarProperty Name="id_azafata" ColumnName="id_azafata" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estadia">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.Estadia">
+        <MappingFragment StoreEntitySet="Estadia">
+          <ScalarProperty Name="id_estadia" ColumnName="id_estadia" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="id_vuelo" ColumnName="id_vuelo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hangarr">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.hangarr">
+        <MappingFragment StoreEntitySet="hangarr">
+          <ScalarProperty Name="id_hangar" ColumnName="id_hangar" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mantenimiento">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.mantenimiento">
+        <MappingFragment StoreEntitySet="mantenimiento">
+          <ScalarProperty Name="id_mantenimiento" ColumnName="id_mantenimiento" />
+          <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+          <ScalarProperty Name="id_mecanico" ColumnName="id_mecanico" />
+          <ScalarProperty Name="fecha_mantenimiento" ColumnName="fecha_mantenimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mecanicos">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.mecanicos">
+        <MappingFragment StoreEntitySet="mecanicos">
+          <ScalarProperty Name="id_mecanico" ColumnName="id_mecanico" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="piloto">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.piloto">
+        <MappingFragment StoreEntitySet="piloto">
+          <ScalarProperty Name="id_piloto" ColumnName="id_piloto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="licencia" ColumnName="licencia" />
+          <ScalarProperty Name="Horas_Vuelo" ColumnName="Horas_Vuelo" />
+          <ScalarProperty Name="fecha_revision" ColumnName="fecha_revision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="propietario">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.propietario">
+        <MappingFragment StoreEntitySet="propietario">
+          <ScalarProperty Name="id_propietario" ColumnName="id_propietario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+          <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vuelo">
+      <EntityTypeMapping TypeName="SistemaAeropuertoModel.vuelo">
+        <MappingFragment StoreEntitySet="vuelo">
+          <ScalarProperty Name="id_vuelo" ColumnName="id_vuelo" />
+          <ScalarProperty Name="fecha_vuelo" ColumnName="fecha_vuelo" />
+          <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

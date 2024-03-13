@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemaAeropuertoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="avion">
+          <Key>
+            <PropertyRef Name="id_avion" />
+          </Key>
+          <Property Name="id_avion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="100" />
+          <Property Name="siglas" Type="varchar" MaxLength="50" />
+          <Property Name="capacidad" Type="int" />
+          <Property Name="fecha_registro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="azafata">
+          <Key>
+            <PropertyRef Name="id_azafata" />
+          </Key>
+          <Property Name="id_azafata" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="cedula" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_registro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Estadia">
+          <Key>
+            <PropertyRef Name="id_estadia" />
+          </Key>
+          <Property Name="id_estadia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="costo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="id_vuelo" Type="int" />
+        </EntityType>
+        <EntityType Name="hangarr">
+          <Key>
+            <PropertyRef Name="id_hangar" />
+          </Key>
+          <Property Name="id_hangar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ubicacion" Type="varchar" MaxLength="100" />
+          <Property Name="capacidad" Type="int" />
+        </EntityType>
+        <EntityType Name="mantenimiento">
+          <Key>
+            <PropertyRef Name="id_mantenimiento" />
+          </Key>
+          <Property Name="id_mantenimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_avion" Type="int" />
+          <Property Name="id_mecanico" Type="int" />
+          <Property Name="fecha_mantenimiento" Type="datetime" />
+        </EntityType>
+        <EntityType Name="mecanicos">
+          <Key>
+            <PropertyRef Name="id_mecanico" />
+          </Key>
+          <Property Name="id_mecanico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="cedula" Type="varchar" MaxLength="30" />
+          <Property Name="telefono" Type="int" />
+          <Property Name="fecha_registro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="piloto">
+          <Key>
+            <PropertyRef Name="id_piloto" />
+          </Key>
+          <Property Name="id_piloto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="cedula" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="int" />
+          <Property Name="licencia" Type="varchar" MaxLength="50" />
+          <Property Name="Horas_Vuelo" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_revision" Type="datetime" />
+        </EntityType>
+        <EntityType Name="propietario">
+          <Key>
+            <PropertyRef Name="id_propietario" />
+          </Key>
+          <Property Name="id_propietario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="cedula" Type="int" />
+          <Property Name="id_avion" Type="int" />
+          <Property Name="fecha_registro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="vuelo">
+          <Key>
+            <PropertyRef Name="id_vuelo" />
+          </Key>
+          <Property Name="id_vuelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_vuelo" Type="datetime" />
+          <Property Name="id_avion" Type="int" />
+        </EntityType>
+        <Association Name="FK__Estadia__id_vuel__4BAC3F29">
+          <End Role="vuelo" Type="Self.vuelo" Multiplicity="0..1" />
+          <End Role="Estadia" Type="Self.Estadia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vuelo">
+              <PropertyRef Name="id_vuelo" />
+            </Principal>
+            <Dependent Role="Estadia">
+              <PropertyRef Name="id_vuelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mantenimi__id_av__4316F928">
+          <End Role="avion" Type="Self.avion" Multiplicity="0..1" />
+          <End Role="mantenimiento" Type="Self.mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avion">
+              <PropertyRef Name="id_avion" />
+            </Principal>
+            <Dependent Role="mantenimiento">
+              <PropertyRef Name="id_avion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mantenimi__id_me__440B1D61">
+          <End Role="mecanicos" Type="Self.mecanicos" Multiplicity="0..1" />
+          <End Role="mantenimiento" Type="Self.mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mecanicos">
+              <PropertyRef Name="id_mecanico" />
+            </Principal>
+            <Dependent Role="mantenimiento">
+              <PropertyRef Name="id_mecanico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propietar__id_av__398D8EEE">
+          <End Role="avion" Type="Self.avion" Multiplicity="0..1" />
+          <End Role="propietario" Type="Self.propietario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avion">
+              <PropertyRef Name="id_avion" />
+            </Principal>
+            <Dependent Role="propietario">
+              <PropertyRef Name="id_avion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vuelo__id_avion__4CA06362">
+          <End Role="avion" Type="Self.avion" Multiplicity="0..1" />
+          <End Role="vuelo" Type="Self.vuelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avion">
+              <PropertyRef Name="id_avion" />
+            </Principal>
+            <Dependent Role="vuelo">
+              <PropertyRef Name="id_avion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaAeropuertoModelStoreContainer">
+          <EntitySet Name="avion" EntityType="Self.avion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="azafata" EntityType="Self.azafata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estadia" EntityType="Self.Estadia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hangarr" EntityType="Self.hangarr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mantenimiento" EntityType="Self.mantenimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mecanicos" EntityType="Self.mecanicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="piloto" EntityType="Self.piloto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="propietario" EntityType="Self.propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vuelo" EntityType="Self.vuelo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Estadia__id_vuel__4BAC3F29" Association="Self.FK__Estadia__id_vuel__4BAC3F29">
+            <End Role="vuelo" EntitySet="vuelo" />
+            <End Role="Estadia" EntitySet="Estadia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mantenimi__id_av__4316F928" Association="Self.FK__mantenimi__id_av__4316F928">
+            <End Role="avion" EntitySet="avion" />
+            <End Role="mantenimiento" EntitySet="mantenimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mantenimi__id_me__440B1D61" Association="Self.FK__mantenimi__id_me__440B1D61">
+            <End Role="mecanicos" EntitySet="mecanicos" />
+            <End Role="mantenimiento" EntitySet="mantenimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propietar__id_av__398D8EEE" Association="Self.FK__propietar__id_av__398D8EEE">
+            <End Role="avion" EntitySet="avion" />
+            <End Role="propietario" EntitySet="propietario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vuelo__id_avion__4CA06362" Association="Self.FK__vuelo__id_avion__4CA06362">
+            <End Role="avion" EntitySet="avion" />
+            <End Role="vuelo" EntitySet="vuelo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaAeropuertoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="avion">
+          <Key>
+            <PropertyRef Name="id_avion" />
+          </Key>
+          <Property Name="id_avion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="siglas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="capacidad" Type="Int32" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="mantenimiento" Relationship="Self.FK__mantenimi__id_av__4316F928" FromRole="avion" ToRole="mantenimiento" />
+          <NavigationProperty Name="propietario" Relationship="Self.FK__propietar__id_av__398D8EEE" FromRole="avion" ToRole="propietario" />
+          <NavigationProperty Name="vuelo" Relationship="Self.FK__vuelo__id_avion__4CA06362" FromRole="avion" ToRole="vuelo" />
+        </EntityType>
+        <EntityType Name="azafata">
+          <Key>
+            <PropertyRef Name="id_azafata" />
+          </Key>
+          <Property Name="id_azafata" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Estadia">
+          <Key>
+            <PropertyRef Name="id_estadia" />
+          </Key>
+          <Property Name="id_estadia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+          <Property Name="costo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_vuelo" Type="Int32" />
+          <NavigationProperty Name="vuelo" Relationship="Self.FK__Estadia__id_vuel__4BAC3F29" FromRole="Estadia" ToRole="vuelo" />
+        </EntityType>
+        <EntityType Name="hangarr">
+          <Key>
+            <PropertyRef Name="id_hangar" />
+          </Key>
+          <Property Name="id_hangar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ubicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="capacidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="mantenimiento">
+          <Key>
+            <PropertyRef Name="id_mantenimiento" />
+          </Key>
+          <Property Name="id_mantenimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_avion" Type="Int32" />
+          <Property Name="id_mecanico" Type="Int32" />
+          <Property Name="fecha_mantenimiento" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="avion" Relationship="Self.FK__mantenimi__id_av__4316F928" FromRole="mantenimiento" ToRole="avion" />
+          <NavigationProperty Name="mecanicos" Relationship="Self.FK__mantenimi__id_me__440B1D61" FromRole="mantenimiento" ToRole="mecanicos" />
+        </EntityType>
+        <EntityType Name="mecanicos">
+          <Key>
+            <PropertyRef Name="id_mecanico" />
+          </Key>
+          <Property Name="id_mecanico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="Int32" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="mantenimiento" Relationship="Self.FK__mantenimi__id_me__440B1D61" FromRole="mecanicos" ToRole="mantenimiento" />
+        </EntityType>
+        <EntityType Name="piloto">
+          <Key>
+            <PropertyRef Name="id_piloto" />
+          </Key>
+          <Property Name="id_piloto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="Int32" />
+          <Property Name="licencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Horas_Vuelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_revision" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="propietario">
+          <Key>
+            <PropertyRef Name="id_propietario" />
+          </Key>
+          <Property Name="id_propietario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="Int32" />
+          <Property Name="id_avion" Type="Int32" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="avion" Relationship="Self.FK__propietar__id_av__398D8EEE" FromRole="propietario" ToRole="avion" />
+        </EntityType>
+        <EntityType Name="vuelo">
+          <Key>
+            <PropertyRef Name="id_vuelo" />
+          </Key>
+          <Property Name="id_vuelo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_vuelo" Type="DateTime" Precision="3" />
+          <Property Name="id_avion" Type="Int32" />
+          <NavigationProperty Name="avion" Relationship="Self.FK__vuelo__id_avion__4CA06362" FromRole="vuelo" ToRole="avion" />
+          <NavigationProperty Name="Estadia" Relationship="Self.FK__Estadia__id_vuel__4BAC3F29" FromRole="vuelo" ToRole="Estadia" />
+        </EntityType>
+        <Association Name="FK__mantenimi__id_av__4316F928">
+          <End Role="avion" Type="Self.avion" Multiplicity="0..1" />
+          <End Role="mantenimiento" Type="Self.mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avion">
+              <PropertyRef Name="id_avion" />
+            </Principal>
+            <Dependent Role="mantenimiento">
+              <PropertyRef Name="id_avion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propietar__id_av__398D8EEE">
+          <End Role="avion" Type="Self.avion" Multiplicity="0..1" />
+          <End Role="propietario" Type="Self.propietario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avion">
+              <PropertyRef Name="id_avion" />
+            </Principal>
+            <Dependent Role="propietario">
+              <PropertyRef Name="id_avion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vuelo__id_avion__4CA06362">
+          <End Role="avion" Type="Self.avion" Multiplicity="0..1" />
+          <End Role="vuelo" Type="Self.vuelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avion">
+              <PropertyRef Name="id_avion" />
+            </Principal>
+            <Dependent Role="vuelo">
+              <PropertyRef Name="id_avion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Estadia__id_vuel__4BAC3F29">
+          <End Role="vuelo" Type="Self.vuelo" Multiplicity="0..1" />
+          <End Role="Estadia" Type="Self.Estadia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vuelo">
+              <PropertyRef Name="id_vuelo" />
+            </Principal>
+            <Dependent Role="Estadia">
+              <PropertyRef Name="id_vuelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mantenimi__id_me__440B1D61">
+          <End Role="mecanicos" Type="Self.mecanicos" Multiplicity="0..1" />
+          <End Role="mantenimiento" Type="Self.mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mecanicos">
+              <PropertyRef Name="id_mecanico" />
+            </Principal>
+            <Dependent Role="mantenimiento">
+              <PropertyRef Name="id_mecanico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaAeropuertoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="avion" EntityType="Self.avion" />
+          <EntitySet Name="azafata" EntityType="Self.azafata" />
+          <EntitySet Name="Estadia" EntityType="Self.Estadia" />
+          <EntitySet Name="hangarr" EntityType="Self.hangarr" />
+          <EntitySet Name="mantenimiento" EntityType="Self.mantenimiento" />
+          <EntitySet Name="mecanicos" EntityType="Self.mecanicos" />
+          <EntitySet Name="piloto" EntityType="Self.piloto" />
+          <EntitySet Name="propietario" EntityType="Self.propietario" />
+          <EntitySet Name="vuelo" EntityType="Self.vuelo" />
+          <AssociationSet Name="FK__mantenimi__id_av__4316F928" Association="Self.FK__mantenimi__id_av__4316F928">
+            <End Role="avion" EntitySet="avion" />
+            <End Role="mantenimiento" EntitySet="mantenimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propietar__id_av__398D8EEE" Association="Self.FK__propietar__id_av__398D8EEE">
+            <End Role="avion" EntitySet="avion" />
+            <End Role="propietario" EntitySet="propietario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vuelo__id_avion__4CA06362" Association="Self.FK__vuelo__id_avion__4CA06362">
+            <End Role="avion" EntitySet="avion" />
+            <End Role="vuelo" EntitySet="vuelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Estadia__id_vuel__4BAC3F29" Association="Self.FK__Estadia__id_vuel__4BAC3F29">
+            <End Role="vuelo" EntitySet="vuelo" />
+            <End Role="Estadia" EntitySet="Estadia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mantenimi__id_me__440B1D61" Association="Self.FK__mantenimi__id_me__440B1D61">
+            <End Role="mecanicos" EntitySet="mecanicos" />
+            <End Role="mantenimiento" EntitySet="mantenimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaAeropuertoModelStoreContainer" CdmEntityContainer="SistemaAeropuertoEntities">
+          <EntitySetMapping Name="avion">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.avion">
+              <MappingFragment StoreEntitySet="avion">
+                <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="siglas" ColumnName="siglas" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="azafata">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.azafata">
+              <MappingFragment StoreEntitySet="azafata">
+                <ScalarProperty Name="id_azafata" ColumnName="id_azafata" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estadia">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.Estadia">
+              <MappingFragment StoreEntitySet="Estadia">
+                <ScalarProperty Name="id_estadia" ColumnName="id_estadia" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+                <ScalarProperty Name="id_vuelo" ColumnName="id_vuelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hangarr">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.hangarr">
+              <MappingFragment StoreEntitySet="hangarr">
+                <ScalarProperty Name="id_hangar" ColumnName="id_hangar" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mantenimiento">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.mantenimiento">
+              <MappingFragment StoreEntitySet="mantenimiento">
+                <ScalarProperty Name="id_mantenimiento" ColumnName="id_mantenimiento" />
+                <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+                <ScalarProperty Name="id_mecanico" ColumnName="id_mecanico" />
+                <ScalarProperty Name="fecha_mantenimiento" ColumnName="fecha_mantenimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mecanicos">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.mecanicos">
+              <MappingFragment StoreEntitySet="mecanicos">
+                <ScalarProperty Name="id_mecanico" ColumnName="id_mecanico" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="piloto">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.piloto">
+              <MappingFragment StoreEntitySet="piloto">
+                <ScalarProperty Name="id_piloto" ColumnName="id_piloto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="licencia" ColumnName="licencia" />
+                <ScalarProperty Name="Horas_Vuelo" ColumnName="Horas_Vuelo" />
+                <ScalarProperty Name="fecha_revision" ColumnName="fecha_revision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="propietario">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.propietario">
+              <MappingFragment StoreEntitySet="propietario">
+                <ScalarProperty Name="id_propietario" ColumnName="id_propietario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vuelo">
+            <EntityTypeMapping TypeName="SistemaAeropuertoModel.vuelo">
+              <MappingFragment StoreEntitySet="vuelo">
+                <ScalarProperty Name="id_vuelo" ColumnName="id_vuelo" />
+                <ScalarProperty Name="fecha_vuelo" ColumnName="fecha_vuelo" />
+                <ScalarProperty Name="id_avion" ColumnName="id_avion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+﻿@model SistemaAeropuerto.Estadia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estadia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.costo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vuelo.id_vuelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vuelo.id_vuelo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_estadia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

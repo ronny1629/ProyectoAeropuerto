@@ -1,0 +1,66 @@
+﻿@model SistemaAeropuerto.piloto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>piloto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.licencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.licencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horas_Vuelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horas_Vuelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_revision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_revision)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_piloto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

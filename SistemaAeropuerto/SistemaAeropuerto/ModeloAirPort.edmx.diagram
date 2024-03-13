@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5e0a3f6746124fec9bd43c721647aeef" Name="Diagram1">
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.avion" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.azafata" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.Estadia" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.hangarr" Width="1.5" PointX="5.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.mantenimiento" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.mecanicos" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.piloto" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.propietario" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAeropuertoModel.vuelo" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="SistemaAeropuertoModel.FK__mantenimi__id_av__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaAeropuertoModel.FK__propietar__id_av__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaAeropuertoModel.FK__vuelo__id_avion__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaAeropuertoModel.FK__Estadia__id_vuel__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaAeropuertoModel.FK__mantenimi__id_me__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
